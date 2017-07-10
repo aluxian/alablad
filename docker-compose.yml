@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  master:
+    image: 'alablad_node'
+    command: 'alabladd -server -rpcbind=127.0.0.1 -rpcport=8332 -rpcallowip=127.0.0.1 -rpcuser=xxx -rpcpassword=yyy -printtoconsole -addnode=alex -addnode=slave -addnode=vlad'
+  slave:
+    image: 'alablad_node'
+    command: 'alabladd -server -rpcbind=127.0.0.1 -rpcport=8332 -rpcallowip=127.0.0.1 -rpcuser=xxx -rpcpassword=yyy -printtoconsole -addnode=master -addnode=alex -addnode=vlad'
+  alex:
+    image: 'alablad_node'
+    command: 'alabladd -server -rpcbind=127.0.0.1 -rpcport=8332 -rpcallowip=127.0.0.1 -rpcuser=xxx -rpcpassword=yyy -printtoconsole -addnode=master -addnode=vlad -addnode=slave'
+  vlad:
+    image: 'alablad_node'
+    command: 'alabladd -server -rpcbind=127.0.0.1 -rpcport=8332 -rpcallowip=127.0.0.1 -rpcuser=xxx -rpcpassword=yyy -printtoconsole -addnode=master -addnode=alex -addnode=slave'
